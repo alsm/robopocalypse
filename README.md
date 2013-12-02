@@ -4,7 +4,7 @@ A Clojure app to interact with the IBM IoT hackathon robopocalypse brief
 
 ## Usage
 
-lein run will interact with the hack2 implementation at http://m2m.demos.ibm.com/hack/index.html?topicRoot=hack2, see http://ibminternetofthings.tumblr.com for more details on the other instances and the commands that can be used.
+lein run will interact with the hack2 implementation at http://m2m.demos.ibm.com/hack/index.html?topicRoot=hack2, see http://ibminternetofthings.tumblr.com/post/68059106887/hackathon-documentation-building-your-iot-defenses for more details on the other instances and the commands that can be used.
 
 ## License
 
