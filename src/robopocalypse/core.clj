@@ -20,6 +20,10 @@
 
 (def quotes ["Damn toasters!" "Frak this!" "You shall not pass!" "Make my day!" "Yippee-ki-yay, Mr. Falcon!"])
 
+(def colors ["aqua" "black" "blue" "brown" "cyan" "gold" "green" "gray" "magenta" "orange" "purple" "red" "white" "yellow"])
+
+(def color (rand-nth colors))
+
 (defn calculate-distance-bearing [lat1 lon1 lat2 lon2]
   (let [radius 6371000
         delta-lat (deg-to-rad (- lat2 lat1))
@@ -78,8 +82,9 @@
                                                  (if-not (contains? ignore ((clojure.string/split topic #"/") 2))
                                                    (update-atom topic (String. payload "UTF-8")))))
 
-(mh/publish conn "hack2/things/C3PO" "{\"location\":\"-0.20101,51.49491\",\"name\":\"C3PO\",\"description\":\"Beep Boop\",\"type\":\"diamond\",\"state\":1,\"color\":\"red\"}")
+(mh/publish conn "hack2/things/C3PO" (str "{\"location\":\"" (first @me) (second @me) "\",\"name\":\"C3PO\",\"description\":\"Beep Boop\",\"type\":\"diamond\",\"state\":1,\"color\":\"red\"}"))
 
+(println "Disabled robots will be turned" color)
 (while (not (empty? @robots))
   (do (let [[robo-id robo-info] (first @robots)]
         (if (and (not (nil? robo-id)) (< (first robo-info) 30))
@@ -87,7 +92,7 @@
             (mh/publish conn "hack2/things/C3PO/addOverlay" (str (rand-nth quotes) "|1000|red|white"))
             (swap! disabled conj robo-id)
             (swap! robots dissoc robo-id)
-            (mh/publish conn (str "hack2/things/" robo-id "/color") "white" 1 true)
+            (mh/publish conn (str "hack2/things/" robo-id "/color") color 1 true)
             (println "Disabled robot" robo-id))
           (do (swap! me next-location (second robo-info) 15.0)
             (mh/publish conn "hack2/things/C3PO/location" (clojure.string/join "," [(first @me) (second @me)]) 1 true)))
