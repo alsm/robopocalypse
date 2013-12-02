@@ -1,0 +1,1 @@
+([:dependencies ([org.clojure/clojure "1.5.1"] [clojurewerkz/machine_head "1.0.0-beta4"] [org.clojure/math.numeric-tower "0.0.2"] [org.clojure/algo.generic "0.1.1"] [org.clojure/data.priority-map "0.0.4"] [org.clojure/tools.nrepl "0.2.3" :exclusions ([org.clojure/clojure])] [clojure-complete/clojure-complete "0.2.3" :exclusions ([org.clojure/clojure])])])
